@@ -465,7 +465,7 @@ h1 {
     overflow: hidden;
     border-right: 3px solid var(--color-gold);
     white-space: nowrap;
-    animation: typing 3s steps(30) 1s both, blink 0.75s step-end infinite;
+    animation: typing 2s steps(20) 1s both, blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
