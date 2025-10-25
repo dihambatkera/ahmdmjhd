@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>AHMDMJHD - Front-End Developer</title>
+    <meta name="description" content="Front-End Developer crafting elegant, sophisticated, and accessible web experiences">
+    <meta name="keywords" content="front-end developer, web developer, React, JavaScript, CSS, HTML, portfolio">
+    <meta name="author" content="AHMDMJHD">
+    
+    <!-- Favicon and Web App Icons -->
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+    <link rel="apple-touch-icon" href="assets/images/icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon.png">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=20250120120000&cb=1234">
+    <!-- Debug: Test if CSS is loading -->
+    <style>
+        /* Emergency override to test if CSS is loading */
+        .cat-image-wrapper {
+            border-radius: 0 !important;
+            overflow: visible !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            border: none !important;
+            outline: 5px solid lime !important; /* Bright green debug outline */
+        }
+
+        .speech-bubble {
+            background: white !important;
+            color: black !important;
+            border-radius: 0 !important;
+            font-family: 'Courier New', monospace !important;
+            border: 3px solid black !important;
+            outline: 5px solid black !important; /* Black debug outline */
+        }
+        
+        /* Test services styling */
+        .services-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 2rem !important;
+            margin-top: 2rem !important;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(212, 175, 55, 0.2) !important;
+            border-radius: 10px !important;
+            padding: 1.5rem !important;
+            text-align: center !important;
+            transition: none !important;
+            cursor: default !important;
+            pointer-events: none !important;
+        }
+        
+        .service-card:hover {
+            transform: none !important;
+            border-color: rgba(212, 175, 55, 0.2) !important;
+            box-shadow: none !important;
+        }
+        
+        .service-icon {
+            font-size: 3rem !important;
+            margin-bottom: 1rem !important;
+            display: block !important;
+        }
+        
+        .service-title {
+            font-size: 1.2rem !important;
+            font-weight: 600 !important;
+            color: #D4AF37 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .service-description {
+            color: #B8B8B8 !important;
+            line-height: 1.6 !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .resume-download-btn {
+            display: inline-block !important;
+            margin-top: 1rem !important;
+            padding: 0.5rem 1rem !important;
+            background: #D4AF37 !important;
+            color: #000 !important;
+            text-decoration: none !important;
+            border-radius: 5px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .resume-download-btn:hover {
+            background: #E6C547 !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        /* Ensure star background covers everything */
+        body {
+            background: #000000 !important;
+            min-height: 100vh !important;
+        }
+        
+        .starfield {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: -1 !important;
+            background: transparent !important;
+            overflow: hidden !important;
+        }
+        
+        /* Add more stars for better coverage */
+        .starfield::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: 
+                radial-gradient(1px 1px at 10px 20px, #D4AF37, transparent),
+                radial-gradient(1px 1px at 30px 50px, #E6C547, transparent),
+                radial-gradient(1px 1px at 60px 80px, #D4AF37, transparent),
+                radial-gradient(1px 1px at 90px 30px, #E6C547, transparent),
+                radial-gradient(1px 1px at 120px 60px, #D4AF37, transparent),
+                radial-gradient(1px 1px at 150px 90px, #E6C547, transparent),
+                radial-gradient(1px 1px at 180px 40px, #D4AF37, transparent),
+                radial-gradient(1px 1px at 210px 70px, #E6C547, transparent),
+                radial-gradient(1px 1px at 240px 20px, #D4AF37, transparent),
+                radial-gradient(1px 1px at 270px 80px, #E6C547, transparent) !important;
+            animation: twinkle 4s ease-in-out infinite alternate !important;
+        }
+        
+        /* Get In Touch Section */
+        .contact-content {
+            max-width: 700px !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem !important;
+            line-height: 1.8 !important;
+            color: var(--color-light-gray, #B8B8B8) !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .contact-subtext {
+            font-size: 0.95rem !important;
+            color: var(--color-gold, #D4AF37) !important;
+            margin-bottom: 2rem !important;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            padding: 1rem 2rem !important;
+            background: #25D366 !important;
+            color: white !important;
+            text-decoration: none !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3) !important;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20BA5A !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4) !important;
+        }
+        
+        .whatsapp-btn svg {
+            width: 24px !important;
+            height: 24px !important;
+        }
+        
+        /* Resume View Link */
+        .resume-link-text {
+            margin-top: 1rem !important;
+            font-size: 1rem !important;
+            color: var(--color-light-gray, #B8B8B8) !important;
+        }
+        
+        .resume-view-link {
+            color: var(--color-gold, #D4AF37) !important;
+            text-decoration: underline !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .resume-view-link:hover {
+            color: #E6C547 !important;
+            text-decoration: none !important;
+        }
+        
+        /* Footer stars coverage */
+        footer {
+            position: relative !important;
+            z-index: 1 !important;
+            background: transparent !important;
+        }
+        
+        /* Section separator lines */
+        .section {
+            border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+            padding-top: 4rem !important;
+        }
+        
+        .hero {
+            border-top: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Starfield Background -->
+    <div class="starfield">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <!-- Interactive Cat -->
+    <div class="cat-container">
+        <div class="speech-bubble" id="speechBubble" role="tooltip" aria-live="polite">dont mind me.. im just an emotional support spinning cat.</div>
+        <div class="cat-image-wrapper" id="catImage" role="button" tabindex="0" aria-label="Interactive cat - click to interact">
+            <img src="assets/images/cat-orange-cat.gif" alt="Orange tabby cat" class="cat-gif">
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+    <section class="hero">
+        <div class="profile-image-container">
+                <img src="assets/images/me.png" alt="AHMDMJHD Profile" class="profile-image">
+        </div>
+
+        <div class="title-container">
+            <h1><span class="typewriter">AHMDMJHD</span></h1>
+            <p class="subtitle">Front-End Developer crafting elegant, sophisticated, and accessible web experiences</p>
+            <p class="resume-link-text">Get to know me better by <a href="assets/pdf/Resume_Ahmad.pdf" class="resume-view-link" target="_blank" rel="noopener noreferrer" aria-label="View AHMDMJHD's resume">viewing my resume</a></p>
+        </div>
+        
+        <a href="#services" class="cta">What Can I Do</a>
+    </section>
+
+        <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">Services</h2>
+        <div class="services-grid">
+            <div class="service-card" data-service="wordpress">
+                <div class="service-icon">🌐</div>
+                <h3 class="service-title">WordPress Website Builder</h3>
+                <p class="service-description">Custom WordPress websites with modern design and functionality</p>
+                </div>
+            
+            <div class="service-card" data-service="portfolio">
+                <div class="service-icon">🎨</div>
+                <h3 class="service-title">Portfolio Website</h3>
+                <p class="service-description">Professional portfolio sites to showcase your work</p>
+            </div>
+
+            <div class="service-card" data-service="ecommerce">
+                <div class="service-icon">🛒</div>
+                <h3 class="service-title">E-commerce Website</h3>
+                <p class="service-description">Online stores with secure payment and inventory management</p>
+                </div>
+            
+            <div class="service-card" data-service="company">
+                <div class="service-icon">🏢</div>
+                <h3 class="service-title">Company Website</h3>
+                <p class="service-description">Corporate websites for businesses and organizations</p>
+            </div>
+
+            <div class="service-card" data-service="figma">
+                <div class="service-icon">🎯</div>
+                <h3 class="service-title">Web Designing (Figma)</h3>
+                <p class="service-description">UI/UX design and prototyping using Figma</p>
+                </div>
+            
+            <div class="service-card" data-service="mysql">
+                <div class="service-icon">🗄️</div>
+                <h3 class="service-title">Database Management</h3>
+                <p class="service-description">MySQL database design, optimization, and maintenance</p>
+            </div>
+            
+            <div class="service-card" data-service="oracle">
+                <div class="service-icon">⚡</div>
+                <h3 class="service-title">Enterprise Database Solutions</h3>
+                <p class="service-description">Oracle database consulting and enterprise solutions</p>
+        </div>
+            
+            <div class="service-card" data-service="coding">
+                <div class="service-icon">👨‍💻</div>
+                <h3 class="service-title">Coding Teaching</h3>
+                <p class="service-description">Programming lessons and mentorship</p>
+                </div>
+            
+            <div class="service-card" data-service="hosting">
+                <div class="service-icon">🌍</div>
+                <h3 class="service-title">Hosting & Domain Seller</h3>
+                <p class="service-description">Web hosting and domain registration services</p>
+                </div>
+            
+            <div class="service-card" data-service="repair">
+                <div class="service-icon">🔧</div>
+                <h3 class="service-title">Device Repair</h3>
+                <p class="service-description">Laptop and phone repair services</p>
+                </div>
+            
+            <div class="service-card" data-service="troubleshoot">
+                <div class="service-icon">🛠️</div>
+                <h3 class="service-title">Laptop Troubleshooting</h3>
+                <p class="service-description">Diagnostic and repair services for laptops</p>
+                </div>
+            
+            <div class="service-card" data-service="remote">
+                <div class="service-icon">💻</div>
+                <h3 class="service-title">Remote Software Support</h3>
+                <p class="service-description">Remote assistance for any software problems</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- Get In Touch Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <p class="contact-text">Interested in working together? Have a project in mind? Let's discuss how I can help bring your ideas to life. Whether it's a simple website or a complex web application, I'm here to help you succeed.</p>
+            <p class="contact-subtext">Click the button below to start a conversation on WhatsApp</p>
+            <a href="https://wa.me/60105047072" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="mailto:ahmd.mujahid04@gmail.com" class="email">ahmd.mujahid04@gmail.com</a>
+            <p style="margin-top: 1.5rem; color: var(--color-gold, #D4AF37); font-weight: 600;">DiHambatKera</p>
+            <p style="margin-top: 0.5rem; color: var(--light-gray);">&copy; 2025 AHMDMJHD. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="assets/js/script.js?v=20250120120000&cb=1234"></script>
+</body>
+</html>
