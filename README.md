@@ -1,6 +1,4 @@
-# AHMDMJHD - Portfolio Website
-
-A modern, elegant portfolio website showcasing my skills and services as a Front-End Developer.
+# My Portfolio website
 
 ## 🌟 Features
 
@@ -18,24 +16,6 @@ A modern, elegant portfolio website showcasing my skills and services as a Front
 - **JavaScript (Vanilla)**: Interactive features and animations
 - **Font**: System fonts for optimal performance
 
-## 📂 Project Structure
-
-```
-ahmdmjhd/
-├── index.html              # Main HTML file
-├── assets/
-│   ├── css/
-│   │   └── styles.css     # All styling
-│   ├── js/
-│   │   └── script.js      # All JavaScript functionality
-│   ├── images/
-│   │   ├── icon.png       # Favicon and web app icon
-│   │   ├── me.png         # Profile picture
-│   │   └── cat-orange-cat.gif  # Animated cat
-│   └── pdf/
-│       └── Resume_Ahmad.pdf    # Resume file
-└── README.md              # This file
-```
 
 ## 🎨 Sections
 
@@ -94,20 +74,6 @@ Simply open `index.html` in any modern web browser to view the website.
 
 © 2025 AHMDMJHD. All rights reserved.
 
-## 🛠️ Installation & Usage
-
-1. Download or clone this repository
-2. No build process required - pure HTML/CSS/JS
-3. Open `index.html` in your browser
-4. Optionally, host on any web server (GitHub Pages, Netlify, etc.)
-
-### Hosting on GitHub Pages
-
-1. Push this repository to GitHub
-2. Go to Settings > Pages
-3. Select main branch as source
-4. Your site will be live at `https://[username].github.io/ahmdmjhd/`
-
 ## 🎨 Customization
 
 - **Colors**: Edit CSS variables in `styles.css`
@@ -118,4 +84,5 @@ Simply open `index.html` in any modern web browser to view the website.
 ---
 
 Made with ❤️ by AHMDMJHD | DiHambatKera
+
 
