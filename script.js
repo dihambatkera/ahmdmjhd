@@ -4,7 +4,7 @@
  */
 
 // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
@@ -39,12 +39,12 @@ function initializeStarfield() {
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = Math.random() * 3 + 's';
             star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            
+
             // Random star sizes
             const size = Math.random() * 2 + 1;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
-            
+
             starfield.appendChild(star);
         }
     }
@@ -61,9 +61,9 @@ function initializeStarfield() {
         shootingStar.style.left = Math.random() * 100 + '%';
         shootingStar.style.top = Math.random() * 50 + '%';
         shootingStar.style.animation = 'shootingStar 2s linear forwards';
-        
+
         starfield.appendChild(shootingStar);
-        
+
         setTimeout(() => {
             if (shootingStar.parentNode) {
                 shootingStar.parentNode.removeChild(shootingStar);
@@ -92,7 +92,7 @@ function initializeStarfield() {
 
     // Initialize
     createDynamicStars();
-    
+
     // Create shooting stars every 3-8 seconds
     setInterval(createShootingStar, Math.random() * 5000 + 3000);
 }
@@ -104,7 +104,7 @@ function initializeMobileNavigation() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (!mobileMenuToggle || !mobileMenuClose || !navLinks) {
         console.warn('Mobile navigation elements not found');
         return;
@@ -116,12 +116,12 @@ function initializeMobileNavigation() {
     }
 
     // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function(e) {
+    mobileMenuToggle.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         if (!isMobile()) return;
-        
+
         console.log('Opening mobile menu');
         navLinks.classList.add('mobile-open');
         setTimeout(() => {
@@ -140,37 +140,37 @@ function initializeMobileNavigation() {
         document.body.style.overflow = '';
     }
 
-    mobileMenuClose.addEventListener('click', function(e) {
+    mobileMenuClose.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         closeMobileMenu();
     });
 
     // Close menu when clicking on nav links
-    navLinks.addEventListener('click', function(e) {
+    navLinks.addEventListener('click', function (e) {
         if (e.target.tagName === 'A' && isMobile()) {
             closeMobileMenu();
         }
     });
 
     // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (isMobile() && navLinks.classList.contains('show') && 
-            !navLinks.contains(e.target) && 
+    document.addEventListener('click', function (e) {
+        if (isMobile() && navLinks.classList.contains('show') &&
+            !navLinks.contains(e.target) &&
             !mobileMenuToggle.contains(e.target)) {
             closeMobileMenu();
         }
     });
 
     // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && navLinks.classList.contains('show') && isMobile()) {
             closeMobileMenu();
         }
     });
 
     // Handle window resize
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         if (!isMobile() && navLinks.classList.contains('show')) {
             closeMobileMenu();
         }
@@ -183,11 +183,11 @@ function initializeMobileNavigation() {
 function initializeCatInteraction() {
     const catImage = document.getElementById('catImage');
     const speechBubble = document.getElementById('speechBubble');
-    
+
     console.log('Cat interaction initializing...');
     console.log('Cat image element:', catImage);
     console.log('Speech bubble element:', speechBubble);
-    
+
     if (!catImage || !speechBubble) {
         console.warn('Cat elements not found');
         return;
@@ -211,22 +211,22 @@ function initializeCatInteraction() {
     // Function to show the message with typing animation
     function showMessage() {
         console.log('Showing cat message');
-        
+
         // If already typing, don't start again
         if (isTyping) return;
-        
+
         try {
             isTyping = true;
             catImage.classList.add('playing');
-            
+
             // Clear the bubble first
             speechBubble.textContent = '';
             speechBubble.classList.remove('show');
-            
+
             // Small delay before starting to type
             setTimeout(() => {
                 speechBubble.classList.add('show');
-                
+
                 // Type the message character by character
                 let i = 0;
                 typingInterval = setInterval(() => {
@@ -239,7 +239,7 @@ function initializeCatInteraction() {
                         isTyping = false;
                     }
                 }, 50); // 50ms delay between characters for smooth typing
-                
+
                 setTimeout(() => {
                     catImage.classList.remove('playing');
                 }, 800);
@@ -251,21 +251,21 @@ function initializeCatInteraction() {
     }
 
     // Cat click handler
-    catImage.addEventListener('click', function(e) {
+    catImage.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent triggering document click
         console.log('Cat clicked!');
         showMessage();
     });
-    
+
     // Speech bubble click handler
-    speechBubble.addEventListener('click', function(e) {
+    speechBubble.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent triggering document click
         console.log('Speech bubble clicked - closing');
         hideMessage();
     });
 
     // Close dialog when clicking anywhere on the page
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         // Only hide if the bubble is showing and click is not on cat or bubble
         if (speechBubble.classList.contains('show')) {
             hideMessage();
@@ -273,7 +273,7 @@ function initializeCatInteraction() {
     });
 
     // Add keyboard support for accessibility
-    catImage.addEventListener('keydown', function(e) {
+    catImage.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             catImage.click();
@@ -293,11 +293,11 @@ function initializeScrollAnimations() {
         return;
     }
 
-    const observerOptions = { 
+    const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -321,10 +321,10 @@ function initializeTypewriterEffect() {
     const typewriter = document.querySelector('.typewriter');
     if (!typewriter) return;
 
-    // Stop typewriter cursor after animation completes
+    // Stop typewriter cursor after animation completes (1.5s animation + 0.3s delay)
     setTimeout(() => {
-        typewriter.style.borderRight = 'none';
-    }, 4000);
+        typewriter.classList.add('typewriter-complete');
+    }, 1800);
 }
 
 /**
@@ -336,12 +336,12 @@ function initializeSmoothScrolling() {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
-            
+
             if (target) {
                 // Calculate scroll position (no header, so minimal offset)
                 const offset = 20; // Small offset from top
                 const targetPosition = target.offsetTop - offset;
-                
+
                 // Use smooth scrolling with fallback for older browsers
                 if ('scrollBehavior' in document.documentElement.style) {
                     window.scrollTo({
@@ -354,7 +354,7 @@ function initializeSmoothScrolling() {
                     const distance = targetPosition - startPosition;
                     const duration = 800;
                     let start = null;
-                    
+
                     function animation(currentTime) {
                         if (start === null) start = currentTime;
                         const timeElapsed = currentTime - start;
@@ -362,14 +362,14 @@ function initializeSmoothScrolling() {
                         window.scrollTo(0, run);
                         if (timeElapsed < duration) requestAnimationFrame(animation);
                     }
-                    
+
                     function easeInOutQuad(t, b, c, d) {
                         t /= d / 2;
                         if (t < 1) return c / 2 * t * t + b;
                         t--;
                         return -c / 2 * (t * (t - 2) - 1) + b;
                     }
-                    
+
                     requestAnimationFrame(animation);
                 }
             }
@@ -384,34 +384,34 @@ function initializeContactForm() {
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         try {
             // Get form data
             const formData = new FormData(this);
             const name = formData.get('name');
             const email = formData.get('email');
             const message = formData.get('message');
-            
+
             // Basic validation
             if (!name || !email || !message) {
                 showNotification('Please fill in all fields.', 'error');
                 return;
             }
-            
+
             if (!isValidEmail(email)) {
                 showNotification('Please enter a valid email address.', 'error');
                 return;
             }
-            
+
             // Simulate form submission
             showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
             this.reset();
-            
+
             // In a real application, you would send the data to a server here
             // sendFormData(formData);
-            
+
         } catch (error) {
             console.error('Error submitting form:', error);
             showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
@@ -440,12 +440,12 @@ function showNotification(message, type = 'success') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Style the notification
     notification.style.cssText = `
         position: fixed;
@@ -461,7 +461,7 @@ function showNotification(message, type = 'success') {
         max-width: 300px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     `;
-    
+
     // Set background color based on type
     if (type === 'success') {
         notification.style.background = 'linear-gradient(90deg, #D4AF37, #F4C430)';
@@ -469,15 +469,15 @@ function showNotification(message, type = 'success') {
     } else {
         notification.style.background = 'linear-gradient(90deg, #e74c3c, #c0392b)';
     }
-    
+
     // Add to page
     document.body.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -510,7 +510,7 @@ function debounce(func, wait) {
 /**
  * Handle window resize events
  */
-window.addEventListener('resize', debounce(function() {
+window.addEventListener('resize', debounce(function () {
     // Recalculate any size-dependent elements if needed
     console.log('Window resized');
 }, 250));
@@ -528,9 +528,9 @@ function initializeServicesInteractions() {
  * Handle scroll events for performance optimizations
  */
 let ticking = false;
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     if (!ticking) {
-        requestAnimationFrame(function() {
+        requestAnimationFrame(function () {
             // Any scroll-based calculations can go here
             ticking = false;
         });
