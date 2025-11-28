@@ -23,6 +23,7 @@
 
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="styles.css?v=1.0.6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Debug: Test if CSS is loading -->
     <style>
         /* Emergency override to test if CSS is loading */
@@ -60,9 +61,7 @@
             border-radius: 10px !important;
             padding: 1.5rem !important;
             text-align: center !important;
-            transition: none !important;
-            cursor: default !important;
-            pointer-events: none !important;
+            /* Removed restrictive debug styles to restore interactivity */
         }
 
         .service-card:hover {
@@ -75,6 +74,8 @@
             font-size: 3rem !important;
             margin-bottom: 1rem !important;
             display: block !important;
+            color: #D4AF37 !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
         }
 
         .service-title {
@@ -301,73 +302,73 @@
             <h2 class="section-title">Services</h2>
             <div class="services-grid">
                 <div class="service-card" data-service="wordpress">
-                    <div class="service-icon">🌐</div>
+                    <div class="service-icon"><i class="fa-brands fa-wordpress"></i></div>
                     <h3 class="service-title">WordPress Website Builder</h3>
                     <p class="service-description">Custom WordPress websites with modern design and functionality</p>
                 </div>
 
                 <div class="service-card" data-service="portfolio">
-                    <div class="service-icon">🎨</div>
+                    <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
                     <h3 class="service-title">Portfolio Website</h3>
                     <p class="service-description">Professional portfolio sites to showcase your work</p>
                 </div>
 
                 <div class="service-card" data-service="ecommerce">
-                    <div class="service-icon">🛒</div>
+                    <div class="service-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                     <h3 class="service-title">E-commerce Website</h3>
                     <p class="service-description">Online stores with secure payment and inventory management</p>
                 </div>
 
                 <div class="service-card" data-service="company">
-                    <div class="service-icon">🏢</div>
+                    <div class="service-icon"><i class="fa-solid fa-building"></i></div>
                     <h3 class="service-title">Company Website</h3>
                     <p class="service-description">Corporate websites for businesses and organizations</p>
                 </div>
 
                 <div class="service-card" data-service="figma">
-                    <div class="service-icon">🎯</div>
+                    <div class="service-icon"><i class="fa-brands fa-figma"></i></div>
                     <h3 class="service-title">Web Designing (Figma)</h3>
                     <p class="service-description">UI/UX design and prototyping using Figma</p>
                 </div>
 
                 <div class="service-card" data-service="mysql">
-                    <div class="service-icon">🗄️</div>
+                    <div class="service-icon"><i class="fa-solid fa-database"></i></div>
                     <h3 class="service-title">Database Management</h3>
                     <p class="service-description">MySQL database design, optimization, and maintenance</p>
                 </div>
 
                 <div class="service-card" data-service="oracle">
-                    <div class="service-icon">⚡</div>
+                    <div class="service-icon"><i class="fa-solid fa-server"></i></div>
                     <h3 class="service-title">Enterprise Database Solutions</h3>
                     <p class="service-description">Oracle database consulting and enterprise solutions</p>
                 </div>
 
                 <div class="service-card" data-service="coding">
-                    <div class="service-icon">👨‍💻</div>
+                    <div class="service-icon"><i class="fa-solid fa-code"></i></div>
                     <h3 class="service-title">Coding Teaching</h3>
                     <p class="service-description">Programming lessons and mentorship</p>
                 </div>
 
                 <div class="service-card" data-service="hosting">
-                    <div class="service-icon">🌍</div>
+                    <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
                     <h3 class="service-title">Hosting & Domain Seller</h3>
                     <p class="service-description">Web hosting and domain registration services</p>
                 </div>
 
                 <div class="service-card" data-service="repair">
-                    <div class="service-icon">🔧</div>
+                    <div class="service-icon"><i class="fa-solid fa-wrench"></i></div>
                     <h3 class="service-title">Device Repair</h3>
                     <p class="service-description">Laptop and phone repair services</p>
                 </div>
 
                 <div class="service-card" data-service="troubleshoot">
-                    <div class="service-icon">🛠️</div>
+                    <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                     <h3 class="service-title">Laptop Troubleshooting</h3>
                     <p class="service-description">Diagnostic and repair services for laptops</p>
                 </div>
 
                 <div class="service-card" data-service="remote">
-                    <div class="service-icon">💻</div>
+                    <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
                     <h3 class="service-title">Remote Software Support</h3>
                     <p class="service-description">Remote assistance for any software problems</p>
                 </div>
