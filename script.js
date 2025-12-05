@@ -1,16 +1,8 @@
-/**
- * Portfolio Website JavaScript
- * Handles interactive elements, animations, and form submissions
- */
 
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-/**
- * Initialize the application
- */
 function initializeApp() {
     initializeStarfield();
     initializeMobileNavigation();
@@ -22,14 +14,11 @@ function initializeApp() {
     initializeServicesInteractions();
 }
 
-/**
- * Initialize animated starfield background
- */
+
 function initializeStarfield() {
     const starfield = document.querySelector('.starfield');
     if (!starfield) return;
 
-    // Create additional dynamic stars
     function createDynamicStars() {
         const numStars = 20;
         for (let i = 0; i < numStars; i++) {
@@ -40,7 +29,6 @@ function initializeStarfield() {
             star.style.animationDelay = Math.random() * 3 + 's';
             star.style.animationDuration = (Math.random() * 2 + 2) + 's';
             
-            // Random star sizes
             const size = Math.random() * 2 + 1;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
@@ -49,7 +37,6 @@ function initializeStarfield() {
         }
     }
 
-    // Create shooting stars occasionally
     function createShootingStar() {
         const shootingStar = document.createElement('div');
         shootingStar.style.position = 'absolute';
@@ -71,7 +58,6 @@ function initializeStarfield() {
         }, 2000);
     }
 
-    // Add shooting star animation to CSS dynamically
     if (!document.querySelector('#shooting-star-styles')) {
         const style = document.createElement('style');
         style.id = 'shooting-star-styles';
@@ -90,16 +76,12 @@ function initializeStarfield() {
         document.head.appendChild(style);
     }
 
-    // Initialize
     createDynamicStars();
     
-    // Create shooting stars every 3-8 seconds
     setInterval(createShootingStar, Math.random() * 5000 + 3000);
 }
 
-/**
- * Initialize mobile navigation
- */
+
 function initializeMobileNavigation() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -110,12 +92,10 @@ function initializeMobileNavigation() {
         return;
     }
 
-    // Only initialize mobile menu functionality on mobile devices
     function isMobile() {
         return window.innerWidth <= 768;
     }
 
-    // Toggle mobile menu
     mobileMenuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -130,7 +110,6 @@ function initializeMobileNavigation() {
         document.body.style.overflow = 'hidden';
     });
 
-    // Close mobile menu
     function closeMobileMenu() {
         console.log('Closing mobile menu');
         navLinks.classList.remove('show');
@@ -146,14 +125,12 @@ function initializeMobileNavigation() {
         closeMobileMenu();
     });
 
-    // Close menu when clicking on nav links
     navLinks.addEventListener('click', function(e) {
         if (e.target.tagName === 'A' && isMobile()) {
             closeMobileMenu();
         }
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (isMobile() && navLinks.classList.contains('show') && 
             !navLinks.contains(e.target) && 
@@ -162,14 +139,12 @@ function initializeMobileNavigation() {
         }
     });
 
-    // Close menu on escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && navLinks.classList.contains('show') && isMobile()) {
             closeMobileMenu();
         }
     });
 
-    // Handle window resize
     window.addEventListener('resize', function() {
         if (!isMobile() && navLinks.classList.contains('show')) {
             closeMobileMenu();
@@ -177,9 +152,6 @@ function initializeMobileNavigation() {
     });
 }
 
-/**
- * Initialize cat interaction with funny dialogs
- */
 function initializeCatInteraction() {
     const catImage = document.getElementById('catImage');
     const speechBubble = document.getElementById('speechBubble');
@@ -197,7 +169,6 @@ function initializeCatInteraction() {
     let typingInterval = null;
     let isTyping = false;
 
-    // Function to hide the message
     function hideMessage() {
         if (typingInterval) {
             clearInterval(typingInterval);
@@ -208,26 +179,20 @@ function initializeCatInteraction() {
         speechBubble.textContent = '';
     }
 
-    // Function to show the message with typing animation
     function showMessage() {
-        console.log('Showing cat message');
         
-        // If already typing, don't start again
         if (isTyping) return;
         
         try {
             isTyping = true;
             catImage.classList.add('playing');
             
-            // Clear the bubble first
             speechBubble.textContent = '';
             speechBubble.classList.remove('show');
             
-            // Small delay before starting to type
             setTimeout(() => {
                 speechBubble.classList.add('show');
                 
-                // Type the message character by character
                 let i = 0;
                 typingInterval = setInterval(() => {
                     if (i < message.length) {
@@ -238,7 +203,7 @@ function initializeCatInteraction() {
                         typingInterval = null;
                         isTyping = false;
                     }
-                }, 50); // 50ms delay between characters for smooth typing
+                }, 50);
                 
                 setTimeout(() => {
                     catImage.classList.remove('playing');
@@ -250,23 +215,19 @@ function initializeCatInteraction() {
         }
     }
 
-    // Cat click handler
     catImage.addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevent triggering document click
+        e.stopPropagation();
         console.log('Cat clicked!');
         showMessage();
     });
     
-    // Speech bubble click handler
     speechBubble.addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevent triggering document click
+        e.stopPropagation();
         console.log('Speech bubble clicked - closing');
         hideMessage();
     });
 
-    // Close dialog when clicking anywhere on the page
     document.addEventListener('click', function(e) {
-        // Only hide if the bubble is showing and click is not on cat or bubble
         if (speechBubble.classList.contains('show')) {
             hideMessage();
         }
@@ -614,3 +575,4 @@ window.PortfolioApp = {
     isValidEmail,
     debounce
 };
+
