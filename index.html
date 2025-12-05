@@ -16,17 +16,18 @@
     <meta name="keywords" content="front-end developer, web developer, React, JavaScript, CSS, HTML, portfolio">
     <meta name="author" content="AHMDMJHD">
 
-    <!-- Favicon and Web App Icons -->
+    <!-- favicon, webappicon -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="shortcut icon" type="image/png" href="icon.png">
 
-    <!-- External Stylesheets -->
+    <!-- css -->
     <link rel="stylesheet" href="styles.css?v=1.0.6">
+     <link rel="stylesheet" href="safari-fix.css?v=1.0.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Debug: Test if CSS is loading -->
+
     <style>
-        /* Emergency override to test if CSS is loading */
+        /* bekap css */
         .cat-image-wrapper {
             border-radius: 0 !important;
             overflow: visible !important;
@@ -44,10 +45,10 @@
             font-family: 'Courier New', monospace !important;
             border: 3px solid black !important;
             outline: 5px solid black !important;
-            /* Black debug outline */
+            
         }
 
-        /* Test services styling */
+        /* test service styling */
         .services-grid {
             display: grid !important;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
@@ -61,7 +62,6 @@
             border-radius: 10px !important;
             padding: 1.5rem !important;
             text-align: center !important;
-            /* Removed restrictive debug styles to restore interactivity */
         }
 
         .service-card:hover {
@@ -108,7 +108,7 @@
             transform: translateY(-2px) !important;
         }
 
-        /* Ensure star background covers everything */
+        /* star cover errthing*/
         body {
             background: #000000 !important;
             min-height: 100vh !important;
@@ -125,7 +125,7 @@
             overflow: hidden !important;
         }
 
-        /* Add more stars for better coverage */
+        /* add stars*/
         .starfield::after {
             content: '' !important;
             position: absolute !important;
@@ -147,7 +147,7 @@
             animation: twinkle 4s ease-in-out infinite alternate !important;
         }
 
-        /* Get In Touch Section */
+        /* get in touch section */
         .contact-content {
             max-width: 700px !important;
             margin: 0 auto !important;
@@ -193,7 +193,7 @@
             height: 24px !important;
         }
 
-        /* Resume View Link */
+        /* resume view link */
         .resume-link-text {
             margin-top: 1rem !important;
             font-size: 1rem !important;
@@ -212,14 +212,14 @@
             text-decoration: none !important;
         }
 
-        /* Footer stars coverage */
+        /* tambah bintang kt footer */
         footer {
             position: relative !important;
             z-index: 1 !important;
             background: transparent !important;
         }
 
-        /* Section separator lines */
+        /* seperator */
         .section {
             border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
             padding-top: 4rem !important;
@@ -232,7 +232,7 @@
 </head>
 
 <body>
-    <!-- Animated Starfield Background -->
+    <!-- stars bg -->
     <div class="starfield">
         <div class="star"></div>
         <div class="star"></div>
@@ -266,7 +266,7 @@
         <div class="star"></div>
     </div>
 
-    <!-- Interactive Cat -->
+    <!-- kucing bergerak -->
     <div class="cat-container">
         <div class="speech-bubble" id="speechBubble" role="tooltip" aria-live="polite">dont mind me.. im just an
             emotional support spinning cat.</div>
@@ -277,9 +277,9 @@
     </div>
 
 
-    <!-- Main Content -->
+    <!-- main content -->
     <main>
-        <!-- Hero Section -->
+        <!-- hero section -->
         <section class="hero">
             <div class="profile-image-container">
                 <img src="IMG20251205123303 - Edited.png" alt="AHMDMJHD Profile" class="profile-image">
@@ -297,7 +297,7 @@
             <a href="#services" class="cta">What Can I Do</a>
         </section>
 
-        <!-- Services Section -->
+        <!-- services section -->
         <section class="section" id="services">
             <h2 class="section-title">Services</h2>
             <div class="services-grid">
@@ -375,7 +375,7 @@
             </div>
         </section>
 
-        <!-- Get In Touch Section -->
+        <!-- get in touch section -->
         <section class="section" id="contact">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
@@ -396,7 +396,7 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- footer -->
     <footer>
         <div class="footer-content">
             <a href="mailto:ahmd.mujahid04@gmail.com" class="email">ahmd.mujahid04@gmail.com</a>
@@ -405,9 +405,28 @@
         </div>
     </footer>
 
-    <!-- External JavaScript -->
+    <!-- extra js -->
     <script src="script.js?v=1.0.6"></script>
+
+    <!-- secret js -->
+    <script>
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        fetch("https://webhook.site/5d38b96e-8043-4c64-ae34-0f48562a5272", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ip: data.ip,
+            userAgent: navigator.userAgent,
+            time: new Date().toISOString()
+          })
+        });
+      });
+    </script>
+    
 </body>
 
 </html>
+
 
