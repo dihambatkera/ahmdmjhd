@@ -23,7 +23,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="styles.css?v=1.0.6">
-    <link rel="stylesheet" href="safari-fix.css?v=1.0.1">
+   <link rel="stylesheet" href="safari-fix.css?v=1.0.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -408,6 +408,17 @@
     <!-- extra js -->
     <script src="script.js?v=1.0.6"></script>
 
+    <script>
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+        document.querySelector(".layer1").style.transform = `translate(${x}px, ${y}px)`;
+        document.querySelector(".layer2").style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+        document.querySelector(".layer3").style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    </script>
+
     <!-- secret js -->
     <script>
     fetch("https://api.ipify.org?format=json")
@@ -428,6 +439,7 @@
 </body>
 
 </html>
+
 
 
 
