@@ -1,14 +1,15 @@
-/* Safari/iOS Compatibility Fixes for Cat Animation */
+/* Safari/iOS Compatibility Fixes for Cat Animation - ENHANCED VERSION */
 
-/* Enhanced cat wrapper with Safari/iOS support */
+/* Enhanced cat wrapper with Safari/iOS support + SPINNING ANIMATION */
 .cat-image-wrapper {
     width: 160px;
     height: 160px;
     cursor: pointer;
     -webkit-transition: -webkit-transform var(--transition-fast);
     transition: transform var(--transition-fast);
-    -webkit-animation: catIdle 3s ease-in-out infinite;
-    animation: catIdle 3s ease-in-out infinite;
+    /* ADD CONTINUOUS SPINNING ANIMATION */
+    -webkit-animation: catSpin 3s linear infinite;
+    animation: catSpin 3s linear infinite;
     border-radius: 0 !important;
     overflow: visible !important;
     box-shadow: none !important;
@@ -20,9 +21,37 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: transform;
+    /* Force GPU rendering */
+    -webkit-perspective: 1000;
+    perspective: 1000;
 }
 
-/* Safari-specific keyframes for catIdle */
+/* CONTINUOUS SPINNING ANIMATION - This is what makes it spin! */
+@-webkit-keyframes catSpin {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+        transform: translate3d(0, 0, 0) rotate(360deg);
+    }
+}
+
+@keyframes catSpin {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+        transform: translate3d(0, 0, 0) rotate(360deg);
+    }
+}
+
+/* Safari-specific keyframes for catIdle (bobbing up and down) */
 @-webkit-keyframes catIdle {
 
     0%,
@@ -52,18 +81,75 @@
 }
 
 .cat-image-wrapper:hover {
-    -webkit-animation: none;
-    animation: none;
+    /* Speed up spinning on hover */
+    -webkit-animation: catSpin 1s linear infinite;
+    animation: catSpin 1s linear infinite;
     -webkit-transform: scale(1.1) !important;
     transform: scale(1.1) !important;
 }
 
 .cat-image-wrapper.playing {
-    -webkit-animation: catPlay 0.8s ease-out;
-    animation: catPlay 0.8s ease-out;
+    /* When clicked, do a crazy spin */
+    -webkit-animation: catPlaySpin 0.8s ease-out;
+    animation: catPlaySpin 0.8s ease-out;
 }
 
-/* Safari-specific keyframes for catPlay */
+/* Safari-specific keyframes for catPlay - ENHANCED WITH SPIN */
+@-webkit-keyframes catPlaySpin {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+
+    25% {
+        -webkit-transform: translate3d(0, -20px, 0) rotate(90deg) scale(1.1);
+        transform: translate3d(0, -20px, 0) rotate(90deg) scale(1.1);
+    }
+
+    50% {
+        -webkit-transform: translate3d(0, -15px, 0) rotate(180deg) scale(1.05);
+        transform: translate3d(0, -15px, 0) rotate(180deg) scale(1.05);
+    }
+
+    75% {
+        -webkit-transform: translate3d(0, -8px, 0) rotate(270deg) scale(1.08);
+        transform: translate3d(0, -8px, 0) rotate(270deg) scale(1.08);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+        transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+    }
+}
+
+@keyframes catPlaySpin {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+
+    25% {
+        -webkit-transform: translate3d(0, -20px, 0) rotate(90deg) scale(1.1);
+        transform: translate3d(0, -20px, 0) rotate(90deg) scale(1.1);
+    }
+
+    50% {
+        -webkit-transform: translate3d(0, -15px, 0) rotate(180deg) scale(1.05);
+        transform: translate3d(0, -15px, 0) rotate(180deg) scale(1.05);
+    }
+
+    75% {
+        -webkit-transform: translate3d(0, -8px, 0) rotate(270deg) scale(1.08);
+        transform: translate3d(0, -8px, 0) rotate(270deg) scale(1.08);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+        transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+    }
+}
+
+/* OLD catPlay animation - keeping for compatibility */
 @-webkit-keyframes catPlay {
     0% {
         -webkit-transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
@@ -130,4 +216,28 @@
     transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    /* Force the image to render on GPU */
+    will-change: transform;
+    /* Prevent iOS from pausing the GIF */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+
+    /* This targets iOS Safari specifically */
+    .cat-image-wrapper {
+        /* Even more aggressive hardware acceleration for iOS */
+        -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .cat-gif {
+        /* Force iOS to render the GIF */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 }
