@@ -315,16 +315,86 @@ function initializeScrollAnimations() {
 }
 
 /**
- * Initialize typewriter effect
+ * Initialize typewriter effect - Ultra smooth 60fps animation
  */
 function initializeTypewriterEffect() {
     const typewriter = document.querySelector('.typewriter');
     if (!typewriter) return;
 
-    // Stop typewriter cursor after animation completes
-    setTimeout(() => {
-        typewriter.style.borderRight = 'none';
-    }, 4000);
+    // Get the full text content
+    const fullText = typewriter.textContent.trim();
+    
+    // Clear the content initially
+    typewriter.textContent = '';
+    typewriter.classList.add('typing');
+
+    // Animation settings - smooth continuous flow
+    const charDelay = 180; // Milliseconds between each character (slow and smooth)
+    const initialDelay = 1000; // 1 second initial delay
+    
+    let currentIndex = 0;
+    let startTime = null;
+    let lastCharTime = 0;
+    let rafId = null;
+
+    function animate(timestamp) {
+        // Initialize timing
+        if (!startTime) {
+            startTime = timestamp;
+            lastCharTime = timestamp;
+        }
+
+        const elapsed = timestamp - startTime;
+        
+        // Wait for initial delay
+        if (elapsed < initialDelay) {
+            rafId = requestAnimationFrame(animate);
+            return;
+        }
+
+        // Calculate time since typing started
+        const typingTime = elapsed - initialDelay;
+        
+        // Calculate target index with smooth interpolation
+        const targetIndex = Math.min(
+            Math.floor(typingTime / charDelay),
+            fullText.length
+        );
+
+        // Update only when needed (frame-perfect)
+        if (targetIndex > currentIndex) {
+            currentIndex = targetIndex;
+            typewriter.textContent = fullText.substring(0, currentIndex);
+        }
+
+        // Continue animation
+        if (currentIndex < fullText.length) {
+            rafId = requestAnimationFrame(animate);
+        } else {
+            // Complete
+            typewriter.textContent = fullText;
+            typewriter.classList.remove('typing');
+            typewriter.classList.add('complete');
+            typewriter.style.borderRight = 'none';
+        }
+    }
+
+    // Start animation after fonts load
+    function startAnimation() {
+        startTime = null;
+        currentIndex = 0;
+        lastCharTime = 0;
+        rafId = requestAnimationFrame(animate);
+    }
+
+    // Wait for fonts
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            setTimeout(startAnimation, 50);
+        });
+    } else {
+        setTimeout(startAnimation, 200);
+    }
 }
 
 /**
