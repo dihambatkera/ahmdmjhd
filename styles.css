@@ -1,9 +1,4 @@
-/* ==========================================================================
-   Portfolio Website Styles - Optimized Version
-   AHMDMJHD's Portfolio - Clean, organized, and maintainable CSS
-   ========================================================================== */
 
-/* CSS Custom Properties (Variables) */
 :root {
     /* Color Palette */
     --color-black: #000000;
@@ -1717,3 +1712,4 @@ body .cat-container #speechBubble {
     }
 
 }
+
