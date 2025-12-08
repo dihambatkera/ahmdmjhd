@@ -16,7 +16,6 @@ function initializeApp() {
     initializeMobileNavigation();
     initializeCatInteraction();
     initializeScrollAnimations();
-    initializeTypewriterEffect();
     initializeSmoothScrolling();
     initializeContactForm();
     initializeServicesInteractions();
@@ -283,12 +282,16 @@ function initializeCatInteraction() {
 
 /**
  * Initialize scroll animations using Intersection Observer
+ * Note: .typewriter elements are explicitly excluded from scroll animations
  */
 function initializeScrollAnimations() {
     if (!('IntersectionObserver' in window)) {
-        // Fallback for older browsers
+        // Fallback for older browsers - explicitly exclude typewriter elements
         document.querySelectorAll('.card, .blog-card, .experience-item').forEach(el => {
-            el.classList.add('visible');
+            // Ensure we don't accidentally include typewriter elements
+            if (!el.classList.contains('typewriter') && !el.querySelector('.typewriter')) {
+                el.classList.add('visible');
+            }
         });
         return;
     }
@@ -300,7 +303,10 @@ function initializeScrollAnimations() {
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            // Double-check: exclude typewriter elements
+            if (entry.isIntersecting && 
+                !entry.target.classList.contains('typewriter') && 
+                !entry.target.querySelector('.typewriter')) {
                 entry.target.classList.add('visible');
                 // Unobserve after animation to improve performance
                 observer.unobserve(entry.target);
@@ -308,40 +314,15 @@ function initializeScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements for scroll animations
+    // Observe elements for scroll animations - explicitly exclude typewriter
     document.querySelectorAll('.card, .blog-card, .experience-item').forEach(el => {
-        observer.observe(el);
+        // Ensure we don't observe typewriter elements
+        if (!el.classList.contains('typewriter') && !el.querySelector('.typewriter')) {
+            observer.observe(el);
+        }
     });
 }
 
-/**
- * Initialize slide-in from bottom animation effect
- */
-function initializeTypewriterEffect() {
-    const typewriter = document.querySelector('.typewriter');
-    if (!typewriter) return;
-
-    // Wait for fonts to load, then trigger slide-in animation
-    function startAnimation() {
-        // Add slide-in class to trigger CSS animation
-        typewriter.classList.add('slide-in');
-        
-        // Mark as complete after animation finishes (0.8s animation + 1s delay = 1.8s)
-        setTimeout(() => {
-            typewriter.classList.remove('slide-in');
-            typewriter.classList.add('complete');
-        }, 1800);
-    }
-
-    // Wait for fonts to be ready for accurate rendering
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-            setTimeout(startAnimation, 50);
-        });
-    } else {
-        setTimeout(startAnimation, 200);
-    }
-}
 
 /**
  * Initialize smooth scrolling for anchor links
@@ -542,12 +523,24 @@ function initializeServicesInteractions() {
 
 /**
  * Handle scroll events for performance optimizations
+ * Note: Hero section and .typewriter elements are explicitly excluded from scroll effects
  */
 let ticking = false;
 window.addEventListener('scroll', function() {
     if (!ticking) {
         requestAnimationFrame(function() {
             // Any scroll-based calculations can go here
+            // IMPORTANT: Do not modify .hero, .typewriter, or related elements
+            const hero = document.querySelector('.hero');
+            const typewriter = document.querySelector('.typewriter');
+            if (hero) {
+                hero.style.transform = 'none';
+                hero.style.willChange = 'auto';
+            }
+            if (typewriter) {
+                typewriter.style.transform = 'none';
+                typewriter.style.willChange = 'auto';
+            }
             ticking = false;
         });
         ticking = true;
